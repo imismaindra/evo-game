@@ -17,3 +17,6 @@ color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1731080547]
 shape = SubResource("RectangleShape2D_xrivr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=616266012]
+debug_enabled = true
