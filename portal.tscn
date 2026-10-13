@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://portal_tscn_001"]
+
+[ext_resource type="Script" path="res://portal.gd" id="1_portal"]
+[ext_resource type="Texture2D" path="res://assets/dungeon/portal_locked.png" id="2_locked"]
+
+[sub_resource type="RectangleShape2D" id="RectShape_portal"]
+size = Vector2(40, 40)
+
+[node name="Portal" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_portal")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_locked")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectShape_portal")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
