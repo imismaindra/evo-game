@@ -1,19 +1,145 @@
 [gd_scene format=3 uid="uid://jv7hgrpitfxw"]
 
-[ext_resource type="Script" uid="uid://c41nqbhhl8vji" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://c41nqbhhl8vji" path="res://enemy.gd" id="1_enemy"]
+[ext_resource type="Texture2D" path="res://assets/enemy/idle.png" id="2_idle"]
+[ext_resource type="Texture2D" path="res://assets/enemy/walk.png" id="3_walk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
-size = Vector2(32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_0"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 0, 100, 100)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1141053360]
-script = ExtResource("1_7k104")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_1"]
+atlas = ExtResource("2_idle")
+region = Rect2(100, 0, 100, 100)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1438538891]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-color = Color(1, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_2"]
+atlas = ExtResource("2_idle")
+region = Rect2(200, 0, 100, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1731080547]
-shape = SubResource("RectangleShape2D_xrivr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_3"]
+atlas = ExtResource("2_idle")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_4"]
+atlas = ExtResource("2_idle")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_idle_5"]
+atlas = ExtResource("2_idle")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_0"]
+atlas = ExtResource("3_walk")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_1"]
+atlas = ExtResource("3_walk")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_2"]
+atlas = ExtResource("3_walk")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_3"]
+atlas = ExtResource("3_walk")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_4"]
+atlas = ExtResource("3_walk")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_5"]
+atlas = ExtResource("3_walk")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_6"]
+atlas = ExtResource("3_walk")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e_walk_7"]
+atlas = ExtResource("3_walk")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enemy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_idle_5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e_walk_7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectShape_enemy"]
+size = Vector2(24, 26)
+
+[sub_resource type="RectangleShape2D" id="RectShape_hitarea"]
+size = Vector2(28, 28)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_enemy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_enemy")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectShape_enemy")
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HitShape" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectShape_hitarea")
