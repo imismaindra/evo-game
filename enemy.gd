@@ -1,41 +1,54 @@
+## enemy.gd — Hunter-X / Orc (v1.0)
+## ═══════════════════════════════════════════════════════════════════
+## KELEMAHAN NAVIGASI v1.0 (INTENTIONAL / DOCUMENTED):
+##   Menggunakan kalkulasi vektor linier Euclidean murni.
+##   Formula: velocity = (player.global_position - global_position).normalized() * SPEED
+##
+##   Konsekuensi: Enemy tidak bisa bermanuver mengelilingi obstacle.
+##   Saat player berdiri di balik sudut dalam dinding "L", enemy akan
+##   bergerak lurus ke arah player dan menempel/tersangkut di dinding
+##   (deadlock navigasi). Ini adalah kelemahan yang sengaja dipertahankan
+##   untuk demonstrasi evolusi perangkat lunak ke v2.0.
+## ═══════════════════════════════════════════════════════════════════
 extends CharacterBody2D
 
-# Evolusi v2.0:
-# 1. Menggunakan NavigationAgent2D (A* Pathfinding polygon)
-# 2. State Machine sederhana untuk menangani status pengejaran
-
-enum State { CHASE, SEARCH }
-var current_state = State.CHASE
-
-@export var player_node: Node2D
 const SPEED = 130.0
 
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@export var player_node: CharacterBody2D
 
-func _ready():
-	# Menunggu frame pertama selesai agar sinkron dengan NavigationServer
-	await get_tree().physics_frame
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-func _physics_process(_delta):
+func _ready() -> void:
+	# Hubungkan HitArea untuk deteksi sentuhan dengan player
+	$HitArea.body_entered.connect(_on_hit_area_body_entered)
+	# Fallback: jika player_node tidak ter-assign via export NodePath,
+	# cari manual via group "player" setelah satu frame
 	if not player_node:
+		await get_tree().process_frame
+		var players := get_tree().get_nodes_in_group("player")
+		if players.size() > 0:
+			player_node = players[0] as CharacterBody2D
+
+func _physics_process(_delta: float) -> void:
+	if not player_node:
+		anim.play("idle")
 		return
 
-	match current_state:
-		State.CHASE:
-			# Update target lokasi ke posisi pemain secara berkala
-			nav_agent.target_position = player_node.global_position
-			
-			if not nav_agent.is_target_reached():
-				var next_path_pos = nav_agent.get_next_path_position()
-				var direction = (next_path_pos - global_position).normalized()
-				velocity = direction * SPEED
-				move_and_slide()
-			else:
-				velocity = Vector2.ZERO
-				current_state = State.SEARCH
-				
-		State.SEARCH:
-			# Berhenti sejenak jika target tercapai atau mencari ulang
-			velocity = Vector2.ZERO
-			if global_position.distance_to(player_node.global_position) > 40.0:
-				current_state = State.CHASE
+	# [v1.0 FLAW] Navigasi linier — tidak ada pathfinding, raycast, atau steering
+	var direction := (player_node.global_position - global_position).normalized()
+	velocity = direction * SPEED
+	move_and_slide()
+
+	# Kontrol animasi & arah hadap
+	if velocity.length() > 5.0:
+		anim.play("walk")
+		if velocity.x < 0:
+			anim.flip_h = true
+		elif velocity.x > 0:
+			anim.flip_h = false
+	else:
+		anim.play("idle")
+
+func _on_hit_area_body_entered(body: Node2D) -> void:
+	if body == player_node:
+		player_node.take_damage()
