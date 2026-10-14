@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" path="res://portal.tscn" id="5_portal"]
 [ext_resource type="PackedScene" path="res://hud.tscn" id="6_hud"]
 [ext_resource type="PackedScene" path="res://torch.tscn" id="7_torch"]
-[ext_resource type="Texture2D" path="res://assets/dungeon/floor.png" id="8_floor"]
-[ext_resource type="Texture2D" path="res://assets/dungeon/wall.png" id="9_wall"]
+[ext_resource type="Texture2D" uid="uid://b1fn70ednntan" path="res://assets/dungeon/floor.png" id="8_floor"]
+[ext_resource type="Texture2D" uid="uid://5m16w8jush44" path="res://assets/dungeon/wall.png" id="9_wall"]
 
 [sub_resource type="RectangleShape2D" id="WallH_Border"]
 size = Vector2(800, 20)
@@ -28,10 +28,10 @@ size = Vector2(120, 20)
 [sub_resource type="RectangleShape2D" id="WallV_Short"]
 size = Vector2(20, 120)
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1613920444]
 script = ExtResource("1_main")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1141436344]
 z_index = -10
 texture_repeat = 2
 offset_right = 800.0
@@ -39,14 +39,14 @@ offset_bottom = 600.0
 texture = ExtResource("8_floor")
 stretch_mode = 1
 
-[node name="BorderTop" type="StaticBody2D" parent="."]
+[node name="BorderTop" type="StaticBody2D" parent="." unique_id=433055332]
 position = Vector2(400, 10)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="BorderTop"]
+[node name="Shape" type="CollisionShape2D" parent="BorderTop" unique_id=700596397]
 shape = SubResource("WallH_Border")
 
-[node name="Visual" type="TextureRect" parent="BorderTop"]
+[node name="Visual" type="TextureRect" parent="BorderTop" unique_id=1609190896]
 texture_repeat = 2
 offset_left = -400.0
 offset_top = -10.0
@@ -55,14 +55,14 @@ offset_bottom = 10.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="BorderBottom" type="StaticBody2D" parent="."]
+[node name="BorderBottom" type="StaticBody2D" parent="." unique_id=1248059891]
 position = Vector2(400, 590)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="BorderBottom"]
+[node name="Shape" type="CollisionShape2D" parent="BorderBottom" unique_id=1817267362]
 shape = SubResource("WallH_Border")
 
-[node name="Visual" type="TextureRect" parent="BorderBottom"]
+[node name="Visual" type="TextureRect" parent="BorderBottom" unique_id=634519830]
 texture_repeat = 2
 offset_left = -400.0
 offset_top = -10.0
@@ -71,14 +71,14 @@ offset_bottom = 10.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="BorderLeft" type="StaticBody2D" parent="."]
+[node name="BorderLeft" type="StaticBody2D" parent="." unique_id=864494045]
 position = Vector2(10, 300)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="BorderLeft"]
+[node name="Shape" type="CollisionShape2D" parent="BorderLeft" unique_id=1259309728]
 shape = SubResource("WallV_Border")
 
-[node name="Visual" type="TextureRect" parent="BorderLeft"]
+[node name="Visual" type="TextureRect" parent="BorderLeft" unique_id=387970747]
 texture_repeat = 2
 offset_left = -10.0
 offset_top = -300.0
@@ -87,14 +87,14 @@ offset_bottom = 300.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="BorderRight" type="StaticBody2D" parent="."]
+[node name="BorderRight" type="StaticBody2D" parent="." unique_id=828731176]
 position = Vector2(790, 300)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="BorderRight"]
+[node name="Shape" type="CollisionShape2D" parent="BorderRight" unique_id=1467741408]
 shape = SubResource("WallV_Border")
 
-[node name="Visual" type="TextureRect" parent="BorderRight"]
+[node name="Visual" type="TextureRect" parent="BorderRight" unique_id=1902785531]
 texture_repeat = 2
 offset_left = -10.0
 offset_top = -300.0
@@ -103,14 +103,14 @@ offset_bottom = 300.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="LWall1_H" type="StaticBody2D" parent="."]
+[node name="LWall1_H" type="StaticBody2D" parent="." unique_id=737962065]
 position = Vector2(210, 180)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="LWall1_H"]
+[node name="Shape" type="CollisionShape2D" parent="LWall1_H" unique_id=1057877421]
 shape = SubResource("WallH_Med")
 
-[node name="Visual" type="TextureRect" parent="LWall1_H"]
+[node name="Visual" type="TextureRect" parent="LWall1_H" unique_id=1761223386]
 texture_repeat = 2
 offset_left = -100.0
 offset_top = -10.0
@@ -119,14 +119,14 @@ offset_bottom = 10.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="LWall1_V" type="StaticBody2D" parent="."]
+[node name="LWall1_V" type="StaticBody2D" parent="." unique_id=542201921]
 position = Vector2(110, 280)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="LWall1_V"]
+[node name="Shape" type="CollisionShape2D" parent="LWall1_V" unique_id=1537795641]
 shape = SubResource("WallV_Med")
 
-[node name="Visual" type="TextureRect" parent="LWall1_V"]
+[node name="Visual" type="TextureRect" parent="LWall1_V" unique_id=701873928]
 texture_repeat = 2
 offset_left = -10.0
 offset_top = -100.0
@@ -135,14 +135,14 @@ offset_bottom = 100.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="LWall2_H" type="StaticBody2D" parent="."]
+[node name="LWall2_H" type="StaticBody2D" parent="." unique_id=447079641]
 position = Vector2(580, 320)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="LWall2_H"]
+[node name="Shape" type="CollisionShape2D" parent="LWall2_H" unique_id=2069640541]
 shape = SubResource("WallH_Med")
 
-[node name="Visual" type="TextureRect" parent="LWall2_H"]
+[node name="Visual" type="TextureRect" parent="LWall2_H" unique_id=586255416]
 texture_repeat = 2
 offset_left = -100.0
 offset_top = -10.0
@@ -151,14 +151,14 @@ offset_bottom = 10.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="LWall2_V" type="StaticBody2D" parent="."]
+[node name="LWall2_V" type="StaticBody2D" parent="." unique_id=1984051156]
 position = Vector2(680, 220)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="LWall2_V"]
+[node name="Shape" type="CollisionShape2D" parent="LWall2_V" unique_id=2088225640]
 shape = SubResource("WallV_Med")
 
-[node name="Visual" type="TextureRect" parent="LWall2_V"]
+[node name="Visual" type="TextureRect" parent="LWall2_V" unique_id=1816928459]
 texture_repeat = 2
 offset_left = -10.0
 offset_top = -100.0
@@ -167,14 +167,14 @@ offset_bottom = 100.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="MidDivider" type="StaticBody2D" parent="."]
+[node name="MidDivider" type="StaticBody2D" parent="." unique_id=524940091]
 position = Vector2(430, 300)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="MidDivider"]
+[node name="Shape" type="CollisionShape2D" parent="MidDivider" unique_id=1672262435]
 shape = SubResource("WallH_Short")
 
-[node name="Visual" type="TextureRect" parent="MidDivider"]
+[node name="Visual" type="TextureRect" parent="MidDivider" unique_id=2120861996]
 texture_repeat = 2
 offset_left = -60.0
 offset_top = -10.0
@@ -183,14 +183,14 @@ offset_bottom = 10.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="SmallWall_LB" type="StaticBody2D" parent="."]
+[node name="SmallWall_LB" type="StaticBody2D" parent="." unique_id=1921258766]
 position = Vector2(300, 460)
 collision_mask = 0
 
-[node name="Shape" type="CollisionShape2D" parent="SmallWall_LB"]
+[node name="Shape" type="CollisionShape2D" parent="SmallWall_LB" unique_id=1872770874]
 shape = SubResource("WallV_Short")
 
-[node name="Visual" type="TextureRect" parent="SmallWall_LB"]
+[node name="Visual" type="TextureRect" parent="SmallWall_LB" unique_id=1541971744]
 texture_repeat = 2
 offset_left = -10.0
 offset_top = -60.0
@@ -199,38 +199,38 @@ offset_bottom = 60.0
 texture = ExtResource("9_wall")
 stretch_mode = 1
 
-[node name="Torch1" parent="." instance=ExtResource("7_torch")]
+[node name="Torch1" parent="." unique_id=627371242 instance=ExtResource("7_torch")]
 position = Vector2(110, 160)
 
-[node name="Torch2" parent="." instance=ExtResource("7_torch")]
+[node name="Torch2" parent="." unique_id=254775461 instance=ExtResource("7_torch")]
 position = Vector2(680, 340)
 
-[node name="Torch3" parent="." instance=ExtResource("7_torch")]
+[node name="Torch3" parent="." unique_id=1346627809 instance=ExtResource("7_torch")]
 position = Vector2(430, 280)
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=829728097 instance=ExtResource("2_player")]
 position = Vector2(136, 464)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player_node") instance=ExtResource("3_enemy")]
+[node name="Enemy" parent="." unique_id=1021653100 node_paths=PackedStringArray("player_node") instance=ExtResource("3_enemy")]
 position = Vector2(700, 80)
 player_node = NodePath("../Player")
 
-[node name="Coin1" parent="." instance=ExtResource("4_coin")]
+[node name="Coin1" parent="." unique_id=1437890482 instance=ExtResource("4_coin")]
 position = Vector2(145, 215)
 
-[node name="Coin2" parent="." instance=ExtResource("4_coin")]
+[node name="Coin2" parent="." unique_id=1124666850 instance=ExtResource("4_coin")]
 position = Vector2(645, 355)
 
-[node name="Coin3" parent="." instance=ExtResource("4_coin")]
+[node name="Coin3" parent="." unique_id=303313141 instance=ExtResource("4_coin")]
 position = Vector2(429, 134)
 
-[node name="Coin4" parent="." instance=ExtResource("4_coin")]
+[node name="Coin4" parent="." unique_id=1643691268 instance=ExtResource("4_coin")]
 position = Vector2(180, 500)
 
-[node name="Coin5" parent="." instance=ExtResource("4_coin")]
+[node name="Coin5" parent="." unique_id=526137805 instance=ExtResource("4_coin")]
 position = Vector2(650, 520)
 
-[node name="Portal" parent="." instance=ExtResource("5_portal")]
+[node name="Portal" parent="." unique_id=887955774 instance=ExtResource("5_portal")]
 position = Vector2(680, 540)
 
-[node name="HUD" parent="." instance=ExtResource("6_hud")]
+[node name="HUD" parent="." unique_id=2145250073 instance=ExtResource("6_hud")]
